@@ -58,7 +58,7 @@ VISUAL = [
 ]
 
 FONT_DEFAULTS = re.compile(r"\b(Inter|Roboto|Open Sans|Arial|Poppins|Montserrat|system-ui)\b")
-FONT_DECL = re.compile(r"(font-family\s*:\s*[^;]+;|fonts\.googleapis\.com/css2\?family=[^\"'&]+|next/font/google[^\n]*|@fontsource(-variable)?/[\w-]+)")
+FONT_DECL = re.compile(r"(font-family\s*:\s*[^;]+;|--[\w-]*(?:font|display|text|heading|body|serif|sans)[\w-]*\s*:\s*\"[^;]+;|fonts\.googleapis\.com/css2\?family=[^\"'&]+|api\.fontshare\.com/v2/css\?[^\"']+|next/font/google[^\n]*|@fontsource(-variable)?/[\w-]+)")
 
 
 def iter_files(root: Path):
@@ -134,6 +134,7 @@ def main() -> int:
     decl_text = " ".join(d[0] if isinstance(d, tuple) else d for d in decls)
     if decls:
         named = set(re.findall(r"[A-Z][A-Za-z]+(?:[ +][A-Z][A-Za-z]+)*", decl_text))
+        named |= {w.replace("-", " ").title() for w in re.findall(r"f\[\]=([a-z0-9-]+)", decl_text)}
         non_default = {n for n in named if not FONT_DEFAULTS.search(n) and n not in {"Sans", "Serif", "Mono"}}
         if not non_default:
             add("WARN", "only default fonts (Inter/Roboto/Poppins/system) — pick a characterful pairing", detail=decl_text[:160])
