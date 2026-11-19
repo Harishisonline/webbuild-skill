@@ -76,6 +76,6 @@ evals/                        test cases (runnable with `claude plugin eval`)
 
 ## Author
 
-Built by Harish ([GitHub](https://github.com/Harishisonline)).
+Built by Harish: [LinkedIn](https://www.linkedin.com/in/harishpradhan0131/) · [GitHub](https://github.com/Harishisonline)
 
 MIT licensed.

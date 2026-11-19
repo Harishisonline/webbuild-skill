@@ -98,9 +98,9 @@ and 1440px → hero mode → motion last.
 - Components: search `references/resources.md` registries (21st.dev, React Bits, Aceternity,
   Motion Primitives…) before hand-writing complex effects, then restyle to the tokens. In a
   static site, rebuild React components in vanilla rather than adding React for one effect.
-- Footer: the business's own socials. If the user has a builder credit rule (e.g. "Site by
-  <name>" with LinkedIn / X / GitHub links), add it small in the footer and note the client
-  can remove it.
+- Footer: the business's own socials, plus the small builder credit already in the starter
+  ("Site by …" with LinkedIn / GitHub). Keep it if the user has a credit rule; the client can
+  ask for it to be removed.
 
 ## 6. Look at it — this is where good sites are made
 
