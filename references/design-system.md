@@ -15,6 +15,7 @@ Read this before choosing colour, type, layout or copy. The question behind ever
 9. The plan → review → build → subtract loop
 10. What owners still call slop (lessons from real reviews)
 11. Anatomy of a premium footer
+12. Buttons, hover and scroll (studied from the Promptbase demos)
 
 ## 1. The tells
 
@@ -176,3 +177,30 @@ The footer is the last thing a prospect sees and the most-criticised part of v1.
 5. A bottom row: ©, one line that looks forward ("the best stories haven't been told yet"),
    and the builder credit. Keep any required legal line (e.g. a trademark non-affiliation
    notice) unless the owner explicitly says to drop it, and tell them the risk if they do.
+
+## 12. Buttons, hover and scroll (studied from the Promptbase demos)
+
+Measured on 8 of the 40 Promptbase 3D demos (Daimyo Games, Kai Moreno, Velocity, Blotter,
+Gallop, Nudge, Pulp Parade, Lanternhare), after an owner said the hovers "aren't responding":
+
+- **Speed is the whole feel.** Every reference reacts in 0.12–0.25 s on
+  `cubic-bezier(.2,.8,.2,1)`. A 0.5 s fill wipe or a magnetic drift that follows the
+  cursor reads as lag. No reference uses magnetic buttons.
+- **Tactile bricks.** A solid fill plus a hard offset edge shadow (`0 5px 0 <darker>`), which
+  lifts 2 px on hover and presses into the edge on `:active` (0.06 s). Nudge uses `steps()`
+  timing for a pixel-game snap, perfect for blocky and Roblox brands.
+- **Swap colour, don't wipe.** Fill or invert in ~0.18 s; gradients fade in via `::before`
+  opacity.
+- **A cursor ring** that grows over anything clickable and squeezes on press (fine pointers
+  only; keep the native cursor). Most of the premium references have one.
+- **Never let a scroll-in animation fight hover.** `gsap.from()` leaves an inline transform
+  that overrides `:hover` transforms. Use `clearProps: "transform,opacity"` on entrances.
+- **Wrap hover styles in `@media (hover: hover)`** so taps on phones don't leave buttons stuck
+  in their hover state.
+- **No native scrollbars, on any site, unless the owner asks for one.** The starter ships
+  `blockbar.js`: a 3D block-tower section navigator on desktop (current section's cube lights
+  up and rotates, counter "02 / 07 Stories", click to jump) and a segmented progress bar on
+  phones. Give important sections `data-bb-label`, and theme it with `--bb-*` variables.
+  Daimyo's "PLATE 01 / 04" counter is the reference for the idea.
+- Test hover like a user does: hover, wiggle the pointer, press. `scripts/shoot.mjs` won't
+  catch a slow or fighting hover; the hover probe in the RBLX Animates build log will.

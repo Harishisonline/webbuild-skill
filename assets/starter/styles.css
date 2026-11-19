@@ -21,6 +21,9 @@
   --step-3: clamp(2.2rem, 1.5rem + 3.4vw, 4.6rem);
   --step-4: clamp(2.8rem, 1.6rem + 6vw, 8rem);
 
+  /* block-tower scrollbar theme (blockbar.js) */
+  --bb-accent: var(--accent); --bb-ink: var(--ink); --bb-bone: var(--bg); --bb-line: var(--line);
+
   /* space + shape */
   --gutter: clamp(1rem, 0.5rem + 2.5vw, 3rem);
   --section: clamp(4rem, 3rem + 6vw, 10rem);
@@ -47,8 +50,10 @@ h2 { font: 400 var(--step-3)/1 var(--font-display); letter-spacing: -0.015em; ma
 .nav a { text-decoration: none; }
 .brand { font: 600 var(--step-0) var(--font-display); }
 
-.btn { display: inline-flex; align-items: center; gap: .5em; padding: .9em 1.4em; background: var(--accent); color: var(--on-accent); border-radius: var(--radius); text-decoration: none; font-weight: 500; transition: transform .3s var(--ease), background .3s; }
-.btn:hover { transform: translateY(-2px); }
+/* tactile button: hard edge, lifts on hover, presses on click, 0.16s (what the best references do) */
+.btn { --edge: color-mix(in oklab, var(--accent) 55%, #000); display: inline-flex; align-items: center; gap: .5em; padding: .9em 1.4em; background: var(--accent); color: var(--on-accent); border-radius: var(--radius); text-decoration: none; font-weight: 600; box-shadow: 0 4px 0 var(--edge); transition: transform .16s cubic-bezier(.2,.8,.2,1), box-shadow .16s cubic-bezier(.2,.8,.2,1), background-color .18s; }
+@media (hover: hover) { .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--edge); } }
+.btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--edge); transition-duration: .06s; }
 .btn--small { padding: .55em 1em; font-size: var(--step--1); }
 .link { text-underline-offset: .25em; }
 .actions { display: flex; flex-wrap: wrap; gap: 1.25rem; align-items: center; margin-top: 2rem; }

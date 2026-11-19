@@ -15,6 +15,7 @@ document.querySelectorAll("[data-year]").forEach((el) => (el.textContent = new D
 let lenis;
 if (!reduce) {
   lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+  window.__lenis = lenis; // blockbar.js uses it for smooth section jumps
   lenis.on("scroll", ScrollTrigger.update);
   gsap.ticker.add((t) => lenis.raf(t * 1000));
   gsap.ticker.lagSmoothing(0);
