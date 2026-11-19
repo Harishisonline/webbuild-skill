@@ -6,6 +6,7 @@
 3. Performance budget
 4. Accessibility & fallbacks
 5. Stack choices
+6. Whole-page 3D (camera stations)
 
 ## 1. Pick the hero mode
 
@@ -98,3 +99,24 @@ const Hero = dynamic(() => import("./HeroScene"), { ssr: false });
 - **React shop / app-like**: Next.js + R3F + `@gsap/react` + `lenis/react`.
 - Pin versions; three r170+, GSAP 3.13+, Lenis 1.1+. Native CSS scroll-driven animations
   (`animation-timeline: view()`) for simple reveals in Chromium/Safari; keep GSAP for timelines.
+
+## 6. Whole-page 3D (camera stations)
+
+When the owner wants the 3D "all the way down" (used on RBLX Animates v2):
+- One `position: fixed` canvas behind the page; every section carries `data-station="n"`.
+- Measure each section's centred scroll position; map scrollY to a float station index and
+  ease between station camera poses (position + look target). Lerp the live camera toward the
+  target each frame (~0.065) so it glides even with jumpy wheels. Under reduced motion, cut
+  straight to the nearest station and render on demand.
+- A fixed `.veil` (solid ink at a per-station opacity, 0.35–0.8) plus a vignette keeps text
+  readable; dark sections like Results get the darkest veil.
+- Dim the scene for text: dark walls, ~17% lit windows, low emissive, near fog. A bright,
+  busy town looks great alone and terrible behind copy.
+- Keep 3D props OFF the camera path between stations, or a giant screen swoops past.
+- If a section has its own DOM video, reuse that `<video>` as the 3D screen's `VideoTexture`
+  (one download, perfectly in sync), and frame the 3D screen as distant context so the phone
+  in the DOM stays the focus, not a doubled image.
+- CSS 3D inside a section (e.g. a card ring) must be clipped (`overflow: clip` on the section,
+  `hidden` on the pinned wrapper), or transformed cards leak into later sections and cause
+  sideways scroll. Any decorative `::before` halo must stay inside the viewport too.
+- Start the WebGL on `requestIdleCallback`; the headline still paints in under 0.5 s.

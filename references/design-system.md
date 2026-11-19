@@ -13,6 +13,8 @@ Read this before choosing colour, type, layout or copy. The question behind ever
 7. Motion
 8. Copy
 9. The plan → review → build → subtract loop
+10. What owners still call slop (lessons from real reviews)
+11. Anatomy of a premium footer
 
 ## 1. The tells
 
@@ -133,3 +135,44 @@ Typewolf.com shows pairings on real sites — better than any list.
 3. **Build** tokens first, then sections, then motion last.
 4. **Look**: `scripts/shoot.mjs` at 390 / 1366 / 1920, read the PNGs, run `scripts/slop_check.py`.
 5. **Subtract**: remove one decorative element before you call it done.
+
+## 10. What owners still call slop (lessons from real reviews)
+
+A site can pass every rule above and still get "this is AI slop" from the owner. From the
+RBLX Animates review (v1 rejected, v2 accepted):
+
+- **"On brand" isn't a licence to flood the page.** v1 used the channel's purple everywhere
+  because the banner was purple. It read as generic. v2 used a near-black ground, warm white
+  text and ONE accent; the brand colour survived only as light inside the 3D scene. Brand
+  colours belong in light, logos and one accent, not on every surface.
+- **Chunky "friendly" fonts read cheap.** Rubik + Figtree looked like a template. A refined
+  display face (Clash Display) + a quiet text face (Satoshi), both free on Fontshare, read premium.
+- **Weak closers and flat colour blocks.** "Don't miss the next one" over two flat coloured
+  slabs was called out by name. Close with a line only this business could say, and give the
+  final buttons real platform logos, a fill that sweeps in on hover, and a magnetic pull.
+- **Use the real brand assets.** The owner wanted their actual profile picture in the logo,
+  real platform logos on the follow buttons, and real numbers. Ask for or pull them first.
+- **A hover preview that follows the cursor felt cheap.** A 3D ring of episode cards that turns
+  with scroll felt premium. Interaction should feel like an object, not a tooltip.
+- **3D only in the hero felt like a gimmick.** Owners who ask for a "3D website" expect the 3D
+  to carry through the page (see `3d-playbook.md` §6).
+- **The credit link matters to the builder.** "Site by …" should go where the builder wants
+  leads (email), not to a code profile.
+
+For creator / channel sites specifically: one section per platform (each with its own clip,
+numbers and logo button), plus a separate **Results** section built from the owner's dashboard
+screenshots (views, growth, followers, and a "most viewed" post card for each platform). Date
+the numbers; never invent them.
+
+## 11. Anatomy of a premium footer
+
+The footer is the last thing a prospect sees and the most-criticised part of v1. Build it as:
+1. Brand block: logo or avatar, name, one-line tagline.
+2. Two or three link columns (Watch/Visit, Explore, Work with us), with platform logos inline.
+3. Contact as buttons: email, plus a direct-message link if the business lives on social.
+4. An oversized wordmark (outline or neon glow: white stroke + brand-colour `drop-shadow`,
+   which keeps letters hollow, unlike `text-shadow`), with a slow light sweep that stops under
+   reduced motion.
+5. A bottom row: ©, one line that looks forward ("the best stories haven't been told yet"),
+   and the builder credit. Keep any required legal line (e.g. a trademark non-affiliation
+   notice) unless the owner explicitly says to drop it, and tell them the risk if they do.

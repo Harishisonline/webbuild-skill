@@ -38,6 +38,10 @@ the moment the owner reads them. Instead:
   `{{placeholder}}` — `slop_check.py` blocks shipping until it's filled.
 - Put every unknown and assumption on an "Ask the client" list for the final report.
 
+For a creator or channel site, ask for (or pull) the dashboard numbers and the profile
+picture up front: YouTube Studio / Instagram insights screenshots, plus vidIQ or similar if
+connected. A Results section built from real numbers is what sells it.
+
 If the brief is thin and the user is around, ask at most 3 questions (business + city,
 primary action, any site they love). If they want you to just go, make sensible assumptions,
 write them down, and keep moving.
@@ -81,6 +85,9 @@ For an undecided direction the user wants to choose, show 2–3 genuinely differ
   for the keyframe rules, prompts and blending.
 - **scene** — live Three.js / R3F when 3D *is* the product story (configurable product,
   architecture, tech). Subject must be the business's thing, never the placeholder knot.
+- **whole page** — when the owner asks for a "3D website", they usually mean 3D throughout,
+  not a 3D hero. Use one fixed scene with a camera station per section
+  (`references/3d-playbook.md` §6).
 
 Generate assets with whatever is connected (Higgsfield / Kling / kie.ai / Nano Banana MCPs or
 skills), or ask the user to drop files in. If nothing is available, build with a clearly
@@ -101,9 +108,11 @@ and 1440px → hero mode → motion last.
 - Components: search `references/resources.md` registries (21st.dev, React Bits, Aceternity,
   Motion Primitives…) before hand-writing complex effects, then restyle to the tokens. In a
   static site, rebuild React components in vanilla rather than adding React for one effect.
-- Footer: the business's own socials, plus the small builder credit already in the starter
-  ("Site by …" with LinkedIn / GitHub). Keep it if the user has a credit rule; the client can
-  ask for it to be removed.
+- Footer: build it to `references/design-system.md` §11 (brand block, link columns with
+  platform logos, contact buttons, oversized wordmark, bottom row). Owners judge the whole site
+  by it. The small builder credit is already in the starter; the client can ask to remove it.
+- Before you call it done, reread `references/design-system.md` §10: the things owners still
+  call slop after every rule passes.
 
 ## 6. Look at it — this is where good sites are made
 
