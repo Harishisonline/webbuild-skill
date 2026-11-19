@@ -50,8 +50,26 @@ add one signature moment. This is "your products, your copy — just better", wh
 - Content bound through config attributes (`data-edit="hero.headline"`) so a template can be
   rebranded fast — worth copying as a pattern if you'll pitch many businesses in one niche.
 
-## Going deeper (optional)
-REA — github.com/morluto/rea (MIT), `npx rea-agents setup` — is a full evidence-based
-reverse-engineering MCP server (CDP page capture, bundle analysis with vendor fingerprints,
-script export, module graphs, screenshot diffs). Overkill for most site work; reach for it
-when teardown.mjs can't tell how something is built.
+## Going deeper: REA's engine
+`teardown.mjs` is the quick pass. When it can't tell how an effect is built (minified bundle,
+custom shader, unusual scroll engine), run REA (github.com/morluto/rea, MIT):
+
+```bash
+scripts/rea-teardown.sh <url> [out-dir] [observe-ms]
+```
+
+It starts a throwaway headless Chrome (temp profile, none of the user's logins) and runs
+REA's browser tools: `inspect-web-page` (DOM, accessibility, scripts with sources, network,
+console), `analyze-web-bundle` (vendor fingerprints with confidence, chunk graph, endpoints,
+explicit unknowns), `export-web-scripts` (every script on disk) and `capture-web-screenshot`.
+It writes `REA-TEARDOWN.md` with fingerprints, shader uniforms, GSAP eases and scrub values.
+
+Then work the exported `scripts/` like evidence: grep for the effect
+(`grep -rn "uniform\|ScrollTrigger.create\|timeline(" scripts`), read the surrounding code to
+learn the technique, and record it in the ledger. REA's own guides are vendored in
+`references/rea/`; start with `references/rea/README.md`. For more REA commands (module
+graph, runtime listeners, comparing two captures) run the pinned runner shown there with `--help`.
+
+REA runs on its own Node 24 via npx, so the user's Node version doesn't matter. The first
+run downloads about 100 MB. The scripts you export are someone else's code: study them, never
+paste them into the client's site.

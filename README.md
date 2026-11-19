@@ -14,7 +14,9 @@ research is condensed into one workflow, four scripts and a starter.
 
 1. **Brief.** Gets the real business: its one primary action and real proof. It never invents reviews or stats.
 2. **Reference.** `teardown.mjs` measures any site you admire: stack, fonts, palette, media,
-   shader uniforms and scroll screenshots. You learn the technique without cloning the site.
+   shader uniforms and scroll screenshots. For a deeper look, `rea-teardown.sh` runs
+   [REA](https://github.com/morluto/rea)'s browser engine to fingerprint the bundle and export
+   every script. You learn the technique without cloning the site.
 3. **Direction.** Plans named colour tokens, a type pairing, wireframes and one signature
    moment, then reviews that plan against a list of classic and 2026 AI tells.
 4. **Hero.** Picks one of four modes: still, treated video (WebGL grading shader), scroll-scrubbed frame sequence (the
@@ -41,7 +43,8 @@ The browser scripts need Playwright once per project:
 npm i -D playwright && npx playwright install chromium
 ```
 
-`frames.sh` needs ffmpeg (`brew install ffmpeg`).
+`frames.sh` needs ffmpeg (`brew install ffmpeg`). `rea-teardown.sh` needs Google Chrome (or
+Playwright's Chromium); it fetches REA and a compatible Node through npx on first run.
 
 ## What's inside
 
@@ -52,10 +55,12 @@ references/
   3d-playbook.md              hero-mode decision table, Three.js/R3F recipes, perf + a11y budget
   scroll-video-playbook.md    keyframes → AI video → frames → scroll scrub, with prompts
   reverse-engineer.md         evidence-first teardown of reference sites
+  rea/                        REA's web reverse-engineering guides (MIT, vendored)
   resources.md                21st.dev, React Bits, Aceternity, GSAP, Spline, inspiration…
   pitch-and-sell.md           finding clients, outreach scripts, pricing, handover
 scripts/
   teardown.mjs                measure a reference site
+  rea-teardown.sh             deep teardown with REA's engine (runs via npx)
   frames.sh                   video → WebP frame sequences + manifest
   shoot.mjs                   multi-viewport screenshots + errors/LCP/overflow
   slop_check.py               AI-slop + ship-readiness linter
@@ -65,14 +70,15 @@ evals/                        test cases (runnable with `claude plugin eval`)
 
 ## Credits
 
-- Method for evidence-first teardowns adapted from [REA](https://github.com/morluto/rea) (MIT).
+- [REA](https://github.com/morluto/rea) by morluto (MIT): its web guides are vendored in
+  `references/rea/` with its license, and `rea-teardown.sh` runs its engine from npm.
 - Design guidance draws on Anthropic's [frontend-design skill](https://github.com/anthropics/skills),
   [Impeccable](https://impeccable.style) and [Taste Skill](https://github.com/Leonxlnx/taste-skill).
 - Technique notes from tutorials by Metics Media, Nate Herk, Jack Roberts, Nick Saraev,
   Chase AI, AI Chris Lee, AyzZ, Komputer Mechanic, MiladiCode and DesignCourse (links in
   `references/scroll-video-playbook.md`).
-- No third-party code or assets are copied. `grade.js` is an original implementation of the
-  treated-video idea.
+- Apart from REA's guides (MIT), no third-party code or assets are copied. `grade.js` is an
+  original implementation of the treated-video idea.
 
 ## Author
 

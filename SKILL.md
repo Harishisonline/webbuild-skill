@@ -46,8 +46,11 @@ write them down, and keep moving.
 
 Follow `references/reverse-engineer.md`: `node scripts/teardown.mjs <url>` measures the stack,
 fonts, palette, media and shader evidence and screenshots the scroll; screen recordings become
-frames you read and turn into a beat-by-beat motion spec. Record OBSERVED → INFERENCE →
-DECISION. Learn the technique; never copy brand, copy, assets or code.
+frames you read and turn into a beat-by-beat motion spec. When that quick pass can't explain
+an effect, go deeper with REA's engine: `scripts/rea-teardown.sh <url>` captures the page,
+fingerprints the bundle and exports every script so you can read how it's actually built
+(guides in `references/rea/`). Record OBSERVED → INFERENCE → DECISION. Learn the technique;
+never copy brand, copy, assets or code.
 
 ## 3. Direction — plan, then attack the plan
 
@@ -144,12 +147,14 @@ Keep it short and concrete:
 | `references/3d-playbook.md` | Choosing the hero; any Three.js/R3F; performance + a11y budget |
 | `references/scroll-video-playbook.md` | Scroll-scrubbed "3D" hero from AI video |
 | `references/reverse-engineer.md` | A reference site, a recording, or rebuilding a prospect's site |
+| `references/rea/README.md` | Going deeper than teardown.mjs with REA's tools |
 | `references/resources.md` | Component registries, effect tools, inspiration, companion skills |
 | `references/pitch-and-sell.md` | Spec site for a prospect, pricing, outreach, handover |
 
 | Script | Does |
 |---|---|
 | `scripts/teardown.mjs <url>` | Measure a reference site (stack, fonts, palette, media, shaders, screenshots) |
+| `scripts/rea-teardown.sh <url>` | Deep teardown with REA's engine: page capture, bundle fingerprints, exported scripts |
 | `scripts/frames.sh <video> <out>` | Video → WebP frame sequences (desktop + mobile) + manifest |
 | `scripts/shoot.mjs <url> [out]` | Screenshots at 3 widths along the scroll + errors/LCP/overflow |
 | `scripts/slop_check.py <dir>` | AI-slop + ship-readiness linter (0 FAIL to ship) |
