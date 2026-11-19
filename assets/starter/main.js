@@ -25,7 +25,9 @@ const hero = document.querySelector(".hero");
 const mode = hero?.dataset.hero;
 if (hero && !reduce) {
   if (mode === "frames") initFrames(hero);
-  if (mode === "scene" && !lowPower) import("./scene.js").then((m) => m.initScene(hero, { small }));
+  // start heavy scenes after first paint so they never delay the headline (LCP)
+  const idle = (fn) => addEventListener("load", () => ("requestIdleCallback" in window ? requestIdleCallback(fn, { timeout: 900 }) : setTimeout(fn, 200)), { once: true });
+  if (mode === "scene" && !lowPower) idle(() => import("./scene.js").then((m) => m.initScene(hero, { small })));
   if (mode === "video") {
     // treated footage: <video id="heroVideo" … hidden> + canvas#gl; data-look="film|clinic|night|print"
     const video = document.getElementById("heroVideo");
@@ -43,7 +45,9 @@ if (!reduce) {
       scrollTrigger: { trigger: el, start: "top 85%", once: true },
     });
   });
-  gsap.from(".hero__copy > *", { y: 20, opacity: 0, duration: 1, ease: "power3.out", stagger: 0.08, delay: 0.15 });
+  // the h1 is usually the LCP element: move it, never fade it from 0 (that delays LCP by seconds)
+  gsap.from(".hero__copy h1", { y: 24, duration: 1, ease: "power3.out", delay: 0.15 });
+  gsap.from(".hero__copy > :not(h1)", { y: 20, opacity: 0, duration: 1, ease: "power3.out", stagger: 0.08, delay: 0.25 });
 }
 
 // ---------- scroll-scrubbed image sequence (Apple-style)

@@ -77,7 +77,8 @@ export function initGrade(canvas, video, look = LOOKS.film) {
   addEventListener("pointermove", (e) => { pointer[0] = e.clientX / innerWidth; pointer[1] = e.clientY / innerHeight; });
   const resize = () => { const dpr = Math.min(devicePixelRatio, 1.5); canvas.width = canvas.clientWidth * dpr; canvas.height = canvas.clientHeight * dpr; gl.viewport(0, 0, canvas.width, canvas.height); };
   addEventListener("resize", resize); resize();
-  let visible = true; new IntersectionObserver(([e]) => (visible = e.isIntersecting)).observe(canvas);
+  // observe the section, not the canvas (a pinned canvas can report "not visible" forever)
+  let visible = true; new IntersectionObserver((es) => (visible = es.some((e) => e.isIntersecting))).observe(canvas.closest("section") || canvas);
   const t0 = performance.now();
   (function frame() {
     requestAnimationFrame(frame);

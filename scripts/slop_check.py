@@ -173,8 +173,8 @@ def main() -> int:
         no_alt = [i for i in imgs if not re.search(r"\balt=", i)]
         if no_alt:
             add("FAIL", f"{len(no_alt)} <img> without alt", detail=no_alt[0][:100])
-        if not re.search(r"href=[\"'](tel:|mailto:|https?://(calendly|cal\.com|wa\.me|api\.whatsapp))|<form\b", html_text, re.I):
-            add("FAIL", "no way to contact / book (tel:, mailto:, form, booking link)")
+        if not re.search(r"href=[\"'](tel:|mailto:|https?://(www\.)?(calendly\.com|cal\.com|wa\.me|api\.whatsapp\.com|ig\.me|m\.me|t\.me|youtube\.com/@[^\"']*sub_confirmation|youtube\.com/channel/[^\"']*sub_confirmation))|<form\b", html_text, re.I):
+            add("FAIL", "no primary action link (tel:, mailto:, form, booking, DM link, or YouTube subscribe link)")
         if re.search(r"href=[\"']#[\"']", html_text):
             add("WARN", "dead links (href=\"#\")")
 

@@ -69,6 +69,18 @@ const Hero = dynamic(() => import("./HeroScene"), { ssr: false });
 - ≤ 1 post-processing pass; bloom is expensive on mobile.
 - Frames hero: desktop set ≤ ~6 MB, mobile ≤ ~2.5 MB, first frame instant.
 
+**Hard-won gotchas (from real builds):**
+- Observe the *section* with IntersectionObserver, not a canvas inside a pinned section:
+  the canvas can report "not visible" forever and your render loop silently stops after frame 1.
+- Drive overlay copy from the same scroll progress as the camera (`onUpdate` callback) instead of
+  a second ScrollTrigger on the pinned element; the second one may never fire.
+- Never fade the h1 from opacity 0 (it's the LCP element); start WebGL on `requestIdleCallback`
+  after `load`. On one build this took phone LCP from 3–8 s to ~1.1 s.
+- Reduced-motion stills render on demand: re-render when late textures (posters) arrive.
+- `fog: false` on video screens/emissive signage, or fog washes them out.
+- Fill the horizon (sky dome in world space + far silhouettes); a lone ground plane meeting a
+  screen-space gradient leaves a visible seam.
+
 ## 4. Accessibility & fallbacks
 
 - `prefers-reduced-motion`: no smooth scroll, no scrub, no pin — show the poster/end state.

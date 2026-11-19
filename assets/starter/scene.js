@@ -47,7 +47,8 @@ export function initScene(section, { small }) {
 
   // pause rendering when off-screen or tab hidden
   let visible = true;
-  new IntersectionObserver(([e]) => (visible = e.isIntersecting)).observe(canvas);
+  // observe the SECTION: a canvas inside a pinned section can report "not visible" forever
+  new IntersectionObserver((es) => (visible = es.some((e) => e.isIntersecting))).observe(section);
   section.classList.add("is-ready");
 
   const clock = new THREE.Clock();
