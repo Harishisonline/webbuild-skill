@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- ⬇ Fill every {{…}} from the brief. slop_check.py fails the build if any stay. -->
+  <title>{{Business Name}} — {{what they do, in {{city}}}}</title>
+  <meta name="description" content="{{One specific sentence: who it's for, what they get, where.}}" />
+  <meta property="og:title" content="{{Business Name}}" />
+  <meta property="og:description" content="{{same as description}}" />
+  <meta property="og:image" content="/og.jpg" />
+  <meta name="theme-color" content="{{--bg hex}}" />
+  <link rel="icon" href="/favicon.svg" />
+
+  <!-- Fonts: choose a pairing from references/design-system.md — never leave Inter-only. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family={{Display+Font}}:wght@400;600&family={{Text+Font}}:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "{{LocalBusiness subtype e.g. Restaurant | Dentist | HomeAndConstructionBusiness}}",
+    "name": "{{Business Name}}",
+    "telephone": "{{+1…}}",
+    "address": { "@type": "PostalAddress", "streetAddress": "{{…}}", "addressLocality": "{{city}}", "addressRegion": "{{…}}", "postalCode": "{{…}}" },
+    "url": "{{https://…}}",
+    "openingHours": "{{Mo-Fr 09:00-18:00}}"
+  }
+  </script>
+
+  <!-- Pinned, CDN, no build step. Swap to npm + Vite when the project grows. -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+      "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/index.js",
+      "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.13.0/ScrollTrigger.js",
+      "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.mjs"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <a class="brand" href="/">{{Business Name}}</a>
+    <nav aria-label="Primary">
+      <a href="#work">{{Work / Menu / Services}}</a>
+      <a href="#about">About</a>
+      <a class="btn btn--small" href="{{tel: / booking url}}">{{Primary action, e.g. Book a table}}</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- HERO — pick ONE hero mode (see references/3d-playbook.md):
+         data-hero="scene"  → live Three.js scene in #gl (scene.js)
+         data-hero="frames" → scroll-scrubbed image sequence (frames.sh output)
+         data-hero="video"  → autoplay muted loop, poster first
+         data-hero="still"  → strong photo/type, no WebGL (fastest, often best) -->
+    <section class="hero" data-hero="frames" data-frames="./frames/hero" aria-label="Intro">
+      <div class="hero__media" aria-hidden="true">
+        <canvas id="gl"></canvas>
+        <img class="hero__poster" src="./frames/hero/desktop/0001.webp" alt="" fetchpriority="high" />
+      </div>
+      <div class="hero__copy">
+        <p class="eyebrow">{{Neighbourhood · since 19xx · specific fact}}</p>
+        <h1 class="display" data-split>{{A headline only THIS business could say}}</h1>
+        <p class="lede">{{One sentence of proof: number, place, guarantee.}}</p>
+        <div class="actions">
+          <a class="btn" href="{{primary action}}">{{Primary action}}</a>
+          <a class="link" href="#work">{{Secondary, e.g. See the menu}}</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="section">
+      <!-- Real offer / menu / services with real prices or ranges. No 3 identical icon cards. -->
+    </section>
+
+    <section id="proof" class="section">
+      <!-- Real reviews (name + source, e.g. Google ★4.8, 312 reviews), press, before/after, numbers. Never invent. -->
+    </section>
+
+    <section id="about" class="section">
+      <!-- Who's behind it. A real photo beats any 3D. -->
+    </section>
+
+    <section id="contact" class="section">
+      <!-- Address + map link, hours, phone (tel:), booking / form. The conversion section. -->
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span data-year></span> {{Business Name}}</p>
+    <!-- Builder credit + social links (kept small; remove on request of the client) -->
+    <p class="credit">
+      Site by <a href="{{your portfolio}}">{{Your name}}</a> ·
+      <a href="{{LinkedIn}}" rel="me noopener" target="_blank">LinkedIn</a> ·
+      <a href="{{X/Twitter}}" rel="me noopener" target="_blank">X</a> ·
+      <a href="{{GitHub}}" rel="me noopener" target="_blank">GitHub</a>
+    </p>
+  </footer>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

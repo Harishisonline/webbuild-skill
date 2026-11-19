@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: coffee-3d-product-hero
+expected_outcome: |
+  A landing page in ember-ore/ with a working real-time 3D or scroll-driven hero that relates to coffee (not a generic shape), a clear subscribe CTA, performance safeguards (DPR cap, reduced-motion and low-power fallback, poster/LCP not blocked by canvas), coffee-specific art direction and copy without invented reviews or stats, and SEO meta.
