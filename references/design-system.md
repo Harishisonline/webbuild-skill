@@ -192,7 +192,8 @@ Gallop, Nudge, Pulp Parade, Lanternhare), after an owner said the hovers "aren't
 - **Swap colour, don't wipe.** Fill or invert in ~0.18 s; gradients fade in via `::before`
   opacity.
 - **A cursor ring** that grows over anything clickable and squeezes on press (fine pointers
-  only; keep the native cursor). Most of the premium references have one.
+  only; keep the native cursor). Most of the premium references have one. The starter ships it
+  as `cursor.js` (no dependencies; theme with `--cr-accent`).
 - **Never let a scroll-in animation fight hover.** `gsap.from()` leaves an inline transform
   that overrides `:hover` transforms. Use `clearProps: "transform,opacity"` on entrances.
 - **Wrap hover styles in `@media (hover: hover)`** so taps on phones don't leave buttons stuck

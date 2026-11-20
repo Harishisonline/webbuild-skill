@@ -112,7 +112,7 @@ and 1440px → hero mode → motion last.
   platform logos, contact buttons, oversized wordmark, bottom row). Owners judge the whole site
   by it. The small builder credit is already in the starter; the client can ask to remove it.
 - Buttons and scroll: follow `references/design-system.md` §12 (tactile 0.16 s buttons, cursor
-  ring, no native scrollbar: the starter's `blockbar.js` replaces it).
+  ring via the starter's `cursor.js`, no native scrollbar: the starter's `blockbar.js` replaces it).
 - Before you call it done, reread `references/design-system.md` §10: the things owners still
   call slop after every rule passes.
 
